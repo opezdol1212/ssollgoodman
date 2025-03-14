@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOL Goodman</title>
+    <!-- Подключаем шрифт из Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1c1c1c; /* Темный фон */
+            color: #f9f200; /* Желтый текст */
+            font-family: 'Comic Sans MS', sans-serif;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-family: 'Fredoka One', cursive; /* Применили новый шрифт только к заголовку */
+            color: #ffcc00; /* Ярко-желтый для заголовка */
+        }
+        .description {
+            background-color: #ff3300; /* Красный фон для описания */
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin-top: 5px;
+            font-size: 1.5rem;
+            color: #fff; /* Белый текст для описания */
+        }
+        .rocket-container {
+            position: absolute;
+            top: 65%; /* Понизили ракету */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: rocket-move 3s linear infinite;
+            z-index: 1;
+            cursor: pointer; /* Чтобы ракету было можно кликать */
+        }
+        .rocket-body {
+            width: 100px; /* Ширина ракеты, как в начале */
+            height: 200px; /* Высота ракеты, как в начале */
+            background-color: #ff6600; /* Красный корпус ракеты */
+            position: relative;
+            border-radius: 0 0 50px 50px;
+            border: 4px solid #ff3300; /* Более темный красный для границ */
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .rocket-nose {
+            position: absolute;
+            top: -80px; /* Подняли нос ракеты, как было */
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg); /* Направили нос вверх */
+            width: 100px; /* Ширина носа такая же, как и корпуса */
+            height: 80px; /* Высота носа */
+            background-color: #ff0000; /* Ярко-красный нос ракеты */
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            border: 4px solid #ff3300;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .rocket-wings {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px; /* Ширина крыльев, как была раньше */
+            height: 60px; /* Высота крыльев, как была раньше */
+            background-color: #ff3333; /* Красные крылья */
+            border-radius: 25px;
+            border: 4px solid #ff3300;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .flame {
+            width: 70px; /* Ширина пламени больше */
+            height: 120px; /* Высота пламени больше */
+            background: radial-gradient(circle, #ff6600, #ff0000); /* Желто-красный огонь */
+            position: absolute;
+            bottom: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            box-shadow: 0 0 20px yellow;
+            animation: flame-animation 0.3s infinite alternate;
+            z-index: -1;
+        }
+        @keyframes flame-animation {
+            0% { height: 120px; opacity: 1; }
+            100% { height: 130px; opacity: 0.7; }
+        }
+        @keyframes rocket-move {
+            0% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, -55%); }
+            100% { transform: translate(-50%, -50%); }
+        }
+        .twitter-logo {
+            position: absolute;
+            top: 10px;
+            right: 30px; /* Сдвинули кнопку X немного левее */
+            font-size: 40px;
+            color: #ffcc00; /* Желтый цвет для логотипа */
+            text-decoration: none;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-weight: bold;
+        }
+        .money {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: gold;
+            opacity: 0;
+            pointer-events: none;
+            animation: showMoney 2s forwards; /* Уменьшили время анимации до 2 секунд */
+        }
+        @keyframes showMoney {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -120%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -200%) scale(1.5); }
+        }
+        /* Добавление декоративных частиц (звезды) */
+        .sparkle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background-color: yellow;
+            border-radius: 50%;
+            animation: sparkle-animation 1.5s infinite;
+            z-index: 0;
+        }
+        @keyframes sparkle-animation {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -80%) scale(1.5); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <h1>SOL Goodman</h1> <!-- Название мемкоина с новым шрифтом -->
+    <div class="description">
+        Sol Goodman is the token you don’t need a lawyer for—because he’s already got your back!
+    </div>
+    <div class="rocket-container" onclick="showMoney()">
+        <div class="rocket-body">
+            <div class="rocket-nose"></div>
+        </div>
+        <div class="rocket-wings"></div>
+        <div class="flame"></div>
+    </div>
+    <a href="https://x.com/solgoodmanmeme" id="twitter-link" class="twitter-logo">X</a>
+
+    <!-- Деньги появятся за ракетой -->
+    <div class="money" id="money">💰💸💰</div>
+
+    <!-- Добавляем декоративные частицы -->
+    <div class="sparkle" style="top: 20%; left: 40%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 10%; left: 60%; animation-delay: 0.5s;"></div>
+    <div class="sparkle" style="top: 30%; left: 80%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="top: 80%; left: 10%; animation-delay: 0.3s;"></div>
+
+    <script>
+        function showMoney() {
+            var moneyElement = document.getElementById("money");
+            moneyElement.style.opacity = 1;  // Показать деньги
+            moneyElement.style.animation = "showMoney 2s forwards";  // Запуск анимации
+        }
+    </script>
+</body>
+</html>
